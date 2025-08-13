@@ -83,15 +83,11 @@ public class BinarySearchTree : IEnumerable<int>
         // TODO Problem 3
         if (node is not null)
         {
-            foreach (var value in TraverseBackward(node.Right))
-                yield return value;
-            
-            // Visit current node
-            yield return node.Data;
-            
-            // Traverse left subtree last (smaller values)
-            foreach (var value in TraverseBackward(node.Left))
-                yield return value;
+            TraverseBackward(node.Right, values);
+
+            values.Add(node.Data);
+
+            TraverseBackward(node.Left, values);
         }
     }
 
